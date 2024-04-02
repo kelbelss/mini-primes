@@ -1,0 +1,3 @@
+[submodule "mini-primes/lib/forge-std"]
+	path = mini-primes/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std

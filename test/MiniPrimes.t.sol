@@ -25,9 +25,9 @@ contract MiniPrimesTest is Test {
         deal(MINTER, 1e18);
     }
 
-    function testBuyID() public view {}
+    function test_buy_fail_tokenIdAlreadyMinted() public view {}
 
-    function testPayment() public view {}
+    function test_buy_fail_InsufficientFunds() public view {}
 
-    function testSuccessfulBuy() public view {}
+    function test_buy_success() public view {}
 }

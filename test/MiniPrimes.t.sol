@@ -47,7 +47,11 @@ contract MiniPrimesTest is Test {
         vm.stopPrank();
     }
 
-    function test_buy_fail_InsufficientFunds() public view {}
+    function test_buy_fail_InsufficientFunds() public {
+        vm.startPrank(MINTER);
+        vm.expectRevert(MiniPrimes.InsufficientFunds.selector);
+        mini.buy{value: 0}(MINTER, 2);
+    }
 
-    function test_buy_success() public view {}
+    function test_buy_success() public {}
 }

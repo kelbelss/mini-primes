@@ -20,6 +20,11 @@ contract MiniPrimes is ERC721 {
 
     constructor() ERC721("MiniPrimes", "PRIME") {}
 
+    function withdrawETH() external payable {
+        // ownable
+        // require(msg.sender(owner))
+    }
+
     function buy(address _to, uint256 tokenId) external payable {
         // revert if already minted
         if (_ownerOf(tokenId) != address(0)) revert AlreadyMinted();

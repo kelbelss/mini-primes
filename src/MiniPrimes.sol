@@ -6,6 +6,11 @@ import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 contract MiniPrimes is ERC721 {
     error AlreadyMinted();
     error InsufficientFunds();
+    error InvalidFactor();
+    error NotFactor();
+
+    event BuyPrime(address _to, uint256 tokenId);
+    event DisputePrime(address disputer, address owner, uint256 tokenId);
 
     uint256 public constant NFT_PRICE = 1 ether; //1e18
 
@@ -20,7 +25,22 @@ contract MiniPrimes is ERC721 {
 
         // tokenID == NFT number wanted
         _mint(_to, tokenId);
+
+        emit BuyPrime(_to, tokenId);
     }
 
-    // function dispute() {}
+    function dispute(uint256 mintedTokenId, uint256 factor) external {
+        // check that the factor supplied is not 1 or the NFT ID number itself
+        if (factor == 1 || factor == mintedTokenId) revert InvalidFactor();
+
+        // check that the factor does divide the NFT ID evenly
+        if (mintedTokenId % factor != 0) revert NotFactor();
+
+        address owner = _ownerOf(mintedTokenId);
+
+        // If it does not, revert. If it does, burn the NFT
+        _burn(mintedTokenId);
+
+        emit DisputePrime(msg.sender, owner, mintedTokenId);
+    }
 }

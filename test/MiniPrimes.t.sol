@@ -8,6 +8,14 @@ import {MiniPrimes} from "../src/MiniPrimes.sol";
 contract MiniPrimesTest is Test {
     uint256 public constant NFT_PRICE = 1 ether; //1e18
 
+    // Events
+    event BuyPrime(address indexed _to, uint256 indexed tokenId);
+    event DisputePrime(
+        address indexed disputer,
+        address indexed owner,
+        uint256 indexed tokenId
+    );
+
     // Variables
     MiniPrimes mini;
 
@@ -66,6 +74,17 @@ contract MiniPrimesTest is Test {
         assertEq(mini.balanceOf(MINTER), 1);
     }
 
+    function test_buy_event() public {
+        // tell Foundry which data to check - index 1, index 2, index 3, check data
+        vm.expectEmit(true, true, false, true);
+
+        // emit expected
+        emit BuyPrime(address(MINTER), 10);
+
+        // Call function that should emit
+        mini.buy{value: NFT_PRICE}(address(MINTER), 10);
+    }
+
     // DISPUTE FUNCTION TESTS
 
     function test_dispute_fail_InvalidFactor() public {
@@ -88,5 +107,20 @@ contract MiniPrimesTest is Test {
         assertEq(mini.ownerOf(10), MINTER);
         mini.dispute(10, 2);
         assertEq(mini.balanceOf(MINTER), 0);
+    }
+
+    function test_dispute_event() public {
+        vm.prank(MINTER);
+        mini.buy{value: NFT_PRICE}(MINTER, 10);
+
+        // prank disputer
+        vm.startPrank(DISPUTER);
+        vm.expectEmit(true, true, true, true);
+
+        // emit expected
+        emit DisputePrime(DISPUTER, MINTER, 10);
+
+        // Call function that should emit
+        mini.dispute(10, 2);
     }
 }

@@ -9,8 +9,12 @@ contract MiniPrimes is ERC721 {
     error InvalidFactor();
     error NotFactor();
 
-    event BuyPrime(address _to, uint256 tokenId);
-    event DisputePrime(address disputer, address owner, uint256 tokenId);
+    event BuyPrime(address indexed _to, uint256 indexed tokenId);
+    event DisputePrime(
+        address indexed disputer,
+        address indexed owner,
+        uint256 indexed tokenId
+    );
 
     uint256 public constant NFT_PRICE = 1 ether; //1e18
 

@@ -20,7 +20,7 @@ contract MiniPrimes is ERC721, Ownable {
 
     uint256 public constant NFT_PRICE = 1 ether; //1e18
 
-    constructor() ERC721("MiniPrimes", "PRIME") Ownable(msg.sender) {}
+    constructor() ERC721("Mini Primes", "PRIME") Ownable(msg.sender) {}
 
     function withdrawETH(address _to) external payable onlyOwner {
         uint256 balance = address(this).balance;

@@ -2,8 +2,9 @@
 pragma solidity 0.8.22;
 
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
-contract MiniPrimes is ERC721 {
+contract MiniPrimes is ERC721, Ownable {
     error AlreadyMinted();
     error InsufficientFunds();
     error InvalidFactor();
@@ -18,7 +19,7 @@ contract MiniPrimes is ERC721 {
 
     uint256 public constant NFT_PRICE = 1 ether; //1e18
 
-    constructor() ERC721("MiniPrimes", "PRIME") {}
+    constructor() ERC721("MiniPrimes", "PRIME") Ownable(msg.sender) {}
 
     function withdrawETH() external payable {
         // ownable
@@ -45,11 +46,11 @@ contract MiniPrimes is ERC721 {
         // check that the factor does divide the NFT ID evenly
         if (mintedTokenId % factor != 0) revert NotFactor();
 
-        address owner = _ownerOf(mintedTokenId);
+        address _owner = _ownerOf(mintedTokenId);
 
         // If it does not, revert. If it does, burn the NFT
         _burn(mintedTokenId);
 
-        emit DisputePrime(msg.sender, owner, mintedTokenId);
+        emit DisputePrime(msg.sender, _owner, mintedTokenId);
     }
 }

@@ -4,6 +4,7 @@ pragma solidity 0.8.22;
 import "forge-std/Test.sol";
 
 import {MiniPrimes} from "../src/MiniPrimes.sol";
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
 contract MiniPrimesTest is Test {
     uint256 public constant NFT_PRICE = 1 ether; //1e18
@@ -122,5 +123,30 @@ contract MiniPrimesTest is Test {
 
         // Call function that should emit
         mini.dispute(10, 2);
+    }
+
+    // WITHDRAW FUNCTION TESTS
+
+    function test_withdrawETH() public {
+        vm.prank(MINTER);
+        mini.buy{value: NFT_PRICE}(MINTER, 10);
+
+        vm.prank(OWNER);
+        mini.withdrawETH(OWNER);
+    }
+
+    function test_withdrawETH_fail_NotOwner() public {
+        vm.prank(MINTER);
+        mini.buy{value: NFT_PRICE}(MINTER, 10);
+
+        // Custom error with parameter
+        bytes memory errorData = abi.encodeWithSelector(
+            Ownable.OwnableUnauthorizedAccount.selector,
+            DISPUTER
+        );
+
+        vm.prank(DISPUTER);
+        vm.expectRevert(errorData);
+        mini.withdrawETH(DISPUTER);
     }
 }

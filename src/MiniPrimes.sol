@@ -5,6 +5,7 @@ import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
 contract MiniPrimes is ERC721, Ownable {
+    error FailedToSend();
     error AlreadyMinted();
     error InsufficientFunds();
     error InvalidFactor();
@@ -21,9 +22,10 @@ contract MiniPrimes is ERC721, Ownable {
 
     constructor() ERC721("MiniPrimes", "PRIME") Ownable(msg.sender) {}
 
-    function withdrawETH() external payable {
-        // ownable
-        // require(msg.sender(owner))
+    function withdrawETH(address _to) external payable onlyOwner {
+        uint256 balance = address(this).balance;
+        (bool sent, ) = payable(_to).call{value: balance}("");
+        if (!sent) revert FailedToSend();
     }
 
     function buy(address _to, uint256 tokenId) external payable {

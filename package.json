@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "coverage": "forge coverage --report lcov && genhtml lcov.info --branch-coverage --output-dir coverage",
+    "deploy": "forge script script/DeployMiniPrimes.s.sol:DeployMiniPrimesScript --rpc-url $BASE_SEPOLIA_RPC_URL --broadcast --verify"
+  }
+}

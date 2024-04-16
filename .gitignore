@@ -1,4 +1,6 @@
 /cache
 /out
+/coverage
+/broadcast
 .DS_Store
 .env

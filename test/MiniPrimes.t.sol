@@ -11,11 +11,7 @@ contract MiniPrimesTest is Test {
 
     // Events
     event BuyPrime(address indexed _to, uint256 indexed tokenId);
-    event DisputePrime(
-        address indexed disputer,
-        address indexed owner,
-        uint256 indexed tokenId
-    );
+    event DisputePrime(address indexed disputer, address indexed owner, uint256 indexed tokenId);
 
     // Variables
     MiniPrimes mini;
@@ -140,10 +136,7 @@ contract MiniPrimesTest is Test {
         mini.buy{value: NFT_PRICE}(MINTER, 10);
 
         // Custom error with parameter
-        bytes memory errorData = abi.encodeWithSelector(
-            Ownable.OwnableUnauthorizedAccount.selector,
-            DISPUTER
-        );
+        bytes memory errorData = abi.encodeWithSelector(Ownable.OwnableUnauthorizedAccount.selector, DISPUTER);
 
         vm.prank(DISPUTER);
         vm.expectRevert(errorData);

@@ -10,12 +10,9 @@ This NFT smart contract project allows users to mint unique NFTs associated with
 
 This mechanism encourages users to choose prime numbers for their NFTs and ensures the accuracy of the associated mathematical properties. It adds an interactive and community-driven aspect to the NFT minting process.
 
-| File               | % Lines         | % Statements   | % Branches    | % Funcs       |
-| ------------------ | --------------- | -------------- | ------------- | ------------- |
-| src/MiniPrimes.sol | 100.00% (12/12) | 95.83% (23/24) | 90.00% (9/10) | 100.00% (3/3) |
-| Total              | 63.16% (12/19)  | 67.65% (23/34) | 90.00% (9/10) | 60.00% (3/5)  |
+## Coverage
 
-| File               | % Lines                                                                       | % Statements                                                                  | % Branches                                                                  | % Funcs                                                                     |
-| ------------------ | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| src/MiniPrimes.sol | ![green](https://via.placeholder.com/15/008000/000000?text=+) 100.00% (12/12) | ![green](https://via.placeholder.com/15/008000/000000?text=+) 95.83% (23/24)  | ![green](https://via.placeholder.com/15/008000/000000?text=+) 90.00% (9/10) | ![green](https://via.placeholder.com/15/008000/000000?text=+) 100.00% (3/3) |
-| Total              | ![orange](https://via.placeholder.com/15/FFA500/000000?text=+) 63.16% (12/19) | ![orange](https://via.placeholder.com/15/FFA500/000000?text=+) 67.65% (23/34) | ![green](https://via.placeholder.com/15/008000/000000?text=+) 90.00% (9/10) | ![orange](https://via.placeholder.com/15/FFA500/000000?text=+) 60.00% (3/5) |
+| File               | % Lines                                                                       | % Statements                                                                 | % Branches                                                                  | % Funcs                                                                     |
+| ------------------ | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| src/MiniPrimes.sol | ![green](https://via.placeholder.com/15/008000/000000?text=+) 100.00% (12/12) | ![green](https://via.placeholder.com/15/008000/000000?text=+) 95.83% (23/24) | ![green](https://via.placeholder.com/15/008000/000000?text=+) 90.00% (9/10) | ![green](https://via.placeholder.com/15/008000/000000?text=+) 100.00% (3/3) |
+| Total              | ![green](https://via.placeholder.com/15/008000/000000?text=+) 100.00% (12/12) | ![green](https://via.placeholder.com/15/008000/000000?text=+) 95.83% (23/24) | ![green](https://via.placeholder.com/15/008000/000000?text=+) 90.00% (9/10) | ![green](https://via.placeholder.com/15/008000/000000?text=+) 100.00% (3/3) |

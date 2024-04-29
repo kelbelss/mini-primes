@@ -1,6 +1,6 @@
 ## Mini Primes
 
-**ERC721 NFT contract with Foundry tests and deploy script**
+**ERC721 NFT contract with Foundry tests and a deploy script.**
 
 This NFT smart contract project allows users to mint unique NFTs associated with prime numbers. Here's how it works:
 

@@ -56,3 +56,10 @@ contract MiniPrimes is ERC721, Ownable {
         emit DisputePrime(msg.sender, _owner, mintedTokenId);
     }
 }
+
+// TODO
+
+// 1. Add incentive for Disputer - currently the NFT burns, what does Disputer get?
+// 2. Adjust price for NFT.
+// 3. Figure out which frontend system is best and make a basic one.
+// 4. Design and code the NFT card.
